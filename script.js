@@ -35,7 +35,7 @@ $('#hour17 .description').val(localStorage.getItem('hour17'));
 
 // Function to track tasks and implement a colour change if they are in the past, present or future
 function auditTask() {
-  // current number of hours
+  // number of hours
   var currentHour = today.hours();
 
   // loop over each time block
