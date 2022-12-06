@@ -1,5 +1,20 @@
+//GIVEN I am using a daily planner to create a schedule
+//WHEN I open the planner
+//THEN the current day is displayed at the top of the calendar
+//WHEN I scroll down
+//THEN I am presented with time blocks for standard business hours
+//WHEN I view the time blocks for that day
+//THEN each time block is color-coded to indicate whether it is in the past, present, or future
+//WHEN I click into a time block
+//THEN I can enter an event
+//WHEN I click the save button for that time block
+//THEN the text for that event is saved in local storage
+// WHEN I refresh the page
+//THEN the saved events persist
+
+
 //variables
-// moment.js
+//moment.js
 
 var today = moment();
 // reference the whole task (time and textarea)
@@ -33,24 +48,24 @@ $('#hour15 .description').val(localStorage.getItem('hour15'));
 $('#hour16 .description').val(localStorage.getItem('hour16'));
 $('#hour17 .description').val(localStorage.getItem('hour17'));
 
-// Function to track tasks and implement a colour change if they are in the past, present or future
+//function to track tasks and implement a colour change if they are in the past, present or future
 function auditTask() {
-  // number of hours
+  //current number of hours
   var currentHour = today.hours();
 
-  // loop over each time block
+  //loop over each time block
   $('.time-block').each(function () {
     var timeId = parseInt($(this).attr('id').split("hour")[1]);
 
-    // if the time Id attribute is before the current hour, add the past class
+    //if the time Id attribute is before the current hour, add the past class
     if (timeId < currentHour) {
       $(this).addClass('past');
-    } // if the time Id attribute is equal to the current hour, remove the past and future classes and add the present class
+    } //if the time Id attribute is equal to the current hour, remove the past and future classes and add the present class
     else if (timeId === currentHour) {
       $(this).removeClass('past');
       $(this).removeClass('future');
       $(this).addClass('present');
-    } // If the time Id attribute is greater than the current time, remove the past and present classes and add the future class
+    } //if the time Id attribute is greater than the current time, remove the past and present classes and add the future class
     else {
       $(this).removeClass('past');
       $(this).removeClass('present');
@@ -59,10 +74,10 @@ function auditTask() {
   });
 }
 
-// Call the audit task function
+//call the audit task function
 auditTask();
 
-// Use setTimeout to update the time every minute (1000ms * 60s)
+//use setTimeout to update the time every minute (1000ms * 60s)
 setTimeout(function () {
   // clear the current URL
   location = ''; // location references the current URL
